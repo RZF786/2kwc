@@ -18,8 +18,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-
-Vue.component('data-table', {
-  name: 'data-table'
-  //options
-})

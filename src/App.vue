@@ -59,7 +59,8 @@
 </template>
 
 <script>
-import DataTable from './components/DataTable'
+// import InvestorDetails from './components/InvestorDetails'
+// import InvestorInfo from './components/InvestorInfo'
 
 export default {
   data () {
@@ -79,8 +80,9 @@ export default {
     }
   },
   name: 'App',
-  components: {
-    DataTable
-  }
+  // components: {
+  //   InvestorDetails,
+  //   InvestorInfo
+  // }
 }
 </script>

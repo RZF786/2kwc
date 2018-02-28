@@ -1,18 +1,22 @@
 <template>
   <v-container fluid> 
     <v-layout column align-left>
-      <data-table></data-table>
+      <investor-info></investor-info>
+      <investor-details></investor-details>
     </v-layout>
   </v-container>
 </template>
 
 <script>
   // import db from './firebaseInit'
-  import DataTable from './DataTable'
+  import InvestorDetails from './InvestorDetails'
+  import InvestorInfo from './InvestorInfo'
+
   export default {
     name: 'home',
     components: {
-      DataTable
+      InvestorDetails,
+      InvestorInfo
     },
     data () {
       return {
