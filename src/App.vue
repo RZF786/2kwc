@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -19,8 +19,8 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
-    <v-toolbar app :clipped-left="clipped" color="indigo darken-4" dark>
+    </v-navigation-drawer> -->
+    <v-toolbar app :clipped-left="clipped" color="red darken-4" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
@@ -40,13 +40,7 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
+    <!-- <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed app>
       <v-list>
         <v-list-tile @click="right = !right">
           <v-list-tile-action>
@@ -55,14 +49,18 @@
           <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; KWC 2018</span>
+      <v-spacer></v-spacer>
+      <span class="text-xs-right">{{appStatus}}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import DataTable from './components/DataTable'
+
 export default {
   data () {
     return {
@@ -76,9 +74,13 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'KWC Wealth Ltd'
+      title: 'KWC Wealth Ltd',
+      appStatus: 'Ready'
     }
   },
-  name: 'App'
+  name: 'App',
+  components: {
+    DataTable
+  }
 }
 </script>
