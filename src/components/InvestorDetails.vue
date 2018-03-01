@@ -19,28 +19,41 @@
       </tr>
     </template>
     <template slot="expand" slot-scope="props">
-      <v-card class="elevation-10">
-        <v-card-text>
-          <v-data-table :headers="subHeaders"
-                        :items="subItems"
-                        item-key="color"
-                        hide-actions
-                        class="elevation-10">
-            <template slot="items" slot-scope="props">
-              <td class="text-xs">{{ props.item.color }}</td>
-              <td class="text-xs">{{ props.item.value }}</td>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
+      <v-container fluid grid-list-md>
+        <v-layout row wrap>
+          <v-flex d-flex xs12 sm6 md4>
+            <v-data-table :headers="subPlanHeaders"
+                          :items="subPlanItems"
+                          item-key="planPayoutDate"
+                          hide-actions
+                          class="elevation-10">
+              <template slot="items" slot-scope="props">
+                <td class="text-xs">{{ props.item.planPayoutDate | moment("DD-MMM-YY")}}</td>
+                <td class="text-xs">{{ props.item.planPayoutAmt }}</td>
+              </template>
+            </v-data-table>
+          </v-flex>
+          <v-flex d-flex xs12 sm6 md4>
+            <v-data-table :headers="subActualHeaders"
+                          :items="subActualItems"
+                          item-key="actualPayoutDate"
+                          hide-actions
+                          class="elevation-10">
+              <template slot="items" slot-scope="props">
+                <td class="text-xs">{{ props.item.actualPayoutDate | moment("DD-MMM-YY")}}</td>
+                <td class="text-xs">{{ props.item.actualPayoutAmt }}</td>
+              </template>
+            </v-data-table>
+          </v-flex>
+        </v-layout>  
+      </v-container>
     </template>
- </v-data-table>
-
+  </v-data-table>
 </template>
 
 <script>
-  function format2(n, currency) {
-      return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  function currency(n, symbol) {
+      return symbol + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
   }
 
   export default {
@@ -64,22 +77,25 @@
           { text: 'Maturity Date', value: 'maturityDate' },
           { text: 'Status', value: 'status' }
         ] ,
-        subHeaders: [
+        subPlanHeaders: [
           { text: 'Plan Payout Date', value: 'planPayoutDate' },
           { text: 'Plan Payout Amt', value: 'planPayoutAmt' },
+        ],
+        subActualHeaders: [
           { text: 'Actual Payout Date', value: 'actualPayoutDate' },
           { text: 'Actual Payout Amt', value: 'actualPayoutAmt' },
         ],
+
         mainItems: [
           {
             value: false,
             name: 'Titanium 60 Series 2',
             contractNo: '200000012',
-            contractAmt: format2(6000, "$"),
-            paidUpAmt: format2(6000, "$"),
-            maturityAmt: format2(7500, "$"),
-            payoutAmtTD: format2(4000, "$"),
-            balance: format2(3500, "$"),
+            contractAmt: currency(6000, "$"),
+            paidUpAmt: currency(6000, "$"),
+            maturityAmt: currency(7500, "$"),
+            payoutAmtTD: currency(4000, "$"),
+            balance: currency(3500, "$"),
             maturityDate: new Date('4/23/2018'),
             status: 'Active'
           },
@@ -87,11 +103,11 @@
             value: false,
             name: 'Titanium 60 Series 2',
             contractNo: '200000013',
-            contractAmt: format2(10000, "$"),
-            paidUpAmt: format2(10000, "$"),
-            maturityAmt: format2(12500, "$"),
-            payoutAmtTD: format2(6000, "$"),
-            balance: format2(6500, "$"),
+            contractAmt: currency(10000, "$"),
+            paidUpAmt: currency(10000, "$"),
+            maturityAmt: currency(12500, "$"),
+            payoutAmtTD: currency(6000, "$"),
+            balance: currency(6500, "$"),
             maturityDate: new Date('8/23/2018'),
             status: 'Active'
           },
@@ -99,20 +115,40 @@
             value: false,
             name: 'Platinum 18',
             contractNo: '200000015',
-            contractAmt: format2(10000, "$"),
-            paidUpAmt: format2(10000, "$"),
-            maturityAmt: format2(18000, "$"),
-            payoutAmtTD: format2(18000, "$"),
-            balance: format2(0, "$"),
+            contractAmt: currency(10000, "$"),
+            paidUpAmt: currency(10000, "$"),
+            maturityAmt: currency(18000, "$"),
+            payoutAmtTD: currency(18000, "$"),
+            balance: currency(0, "$"),
             maturityDate: new Date('1/14/2018'),
             status: 'Fully Settled'
           }
         ],
-        subItems: [
-          { color: 'Red', value: '1' },
-          { color: 'Green', value: '2' },
-          { color: 'Blue', value: '3' },
-          { color: 'Black', value: '4' }
+        subPlanItems: [
+          { 
+            planPayoutDate: new Date('1/30/2018'),
+            planPayoutAmt: currency(2300,"$") 
+          },
+          { planPayoutDate: 'Feb-2018', value: '2' },
+          { planPayoutDate: 'Mar-2018', value: '3' },
+          { planPayoutDate: 'Apr-2018', value: '4' },
+          { planPayoutDate: 'May-2018', value: '1' },
+          { planPayoutDate: 'Jun-2018', value: '2' },
+          { planPayoutDate: 'Jul-2018', value: '3' },
+          { planPayoutDate: 'Aug-2018', value: '4' }
+        ],
+        subActualItems: [
+          { 
+            actualPayoutDate: new Date('2/15/2018'),
+            actualPayoutAmt: currency(1800,"$") 
+          },
+          { actualPayoutDate: 'Feb-2018', value: '2' },
+          { actualPayoutDate: 'Mar-2018', value: '3' },
+          { actualPayoutDate: 'Apr-2018', value: '4' },
+          { actualPayoutDate: 'May-2018', value: '1' },
+          { actualPayoutDate: 'Jun-2018', value: '2' },
+          { actualPayoutDate: 'Jul-2018', value: '3' },
+          { actualPayoutDate: 'Aug-2018', value: '4' }
         ]
       }
     }

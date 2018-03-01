@@ -3,9 +3,7 @@
     <v-layout row wrap>
       <v-flex d-flex xs12 sm6 md4>
          <v-card color="indigo darken-4" dark>
-           <div>
-             <div class="headline">{{InvestorName}}</div>
-           </div>
+          
            <v-card-title primary class="title">Investor: {{investorName}}</v-card-title>
            <v-card-text>
              <v-flex d-flex xs12>
