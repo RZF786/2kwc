@@ -80,6 +80,9 @@ export default {
     }
   },
   name: 'App',
+  created () {
+    console.log(this.$store.state)
+  }
   // components: {
   //   InvestorDetails,
   //   InvestorInfo
